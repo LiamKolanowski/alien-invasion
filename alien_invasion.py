@@ -13,13 +13,13 @@ class AlienInvasion:
         pygame.init()
         self.settings = Settings()
 
-        self.screen = pygame.display.set_mode(
-            (0,0), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
 
         self.ship = Ship(self)
+        self.bullets = pygame.sprite.Group()
 
         # Set the background color.
         self.bg_color = (230, 230, 230)
@@ -29,7 +29,8 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
-            self._update_screen()       
+            self._update_screen()
+            self.bullets.update()       
 
     def _check_events(self):
         """Respond to keypresses and mouse events."""
